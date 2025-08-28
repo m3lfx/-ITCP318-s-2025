@@ -3,13 +3,14 @@ import React from 'react'
 import './App.css'
 import Title from './Title'
 import Nav from './Nav'
+import Create from './Create'
 
 function App() {
 
   return (
     <>
       <Nav />
-      <Title name="this is my post" subTitle="this is a subtitle2" />
+      <Create />
     </>
   )
 }
