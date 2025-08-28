@@ -11,10 +11,11 @@ const Create = () => {
         content: '',
         user: '',
     });
+    console.log("state", state)
 
     const handleChange = name => event => {
-        // console.log('name', name, 'event', event.target.value);
-
+        console.log('name', name, 'event', event.target.value);
+        
         setState({ ...state, [name]: event.target.value });
     };
 
@@ -22,16 +23,13 @@ const Create = () => {
         event.preventDefault();
         // console.table({ title, content, user });
         axios
-            .post(`${process.env.REACT_APP_API}/post`, { title, content, user }, {
-                headers: {
-                    authorization: `Bearer ${getToken()}`
-                }
-            }).then(response => {
+            .post(`${import.meta.env.VITE_APP_API}post`, { title, content, user }
+            ).then(response => {
                 console.log(response);
-                // empty state
+                
                 setState({ ...state, title: '', content: '', user: '' });
                 // show sucess alert
-                navigate('/')
+                // navigate('/')
             })
             .catch(error => {
                 console.log(error.response);
@@ -45,7 +43,7 @@ const Create = () => {
             <Title name="create blog post" subTitle="my comment" />
             <h1>CREATE POST</h1>
             <br />
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <div className="form-group">
                     <label className="text-muted">Title</label>
                     <input type="text" className="form-control" placeholder="Post title" required onChange={handleChange('title')} value={title} />
