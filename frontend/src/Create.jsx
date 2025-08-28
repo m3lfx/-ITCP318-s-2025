@@ -6,6 +6,8 @@ import axios from 'axios'
 
 const Create = () => {
 
+    const navigate = useNavigate();
+
     const [state, setState] = useState({
         title: '',
         content: '',
@@ -29,7 +31,7 @@ const Create = () => {
                 
                 setState({ ...state, title: '', content: '', user: '' });
                 // show sucess alert
-                // navigate('/')
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.response);
