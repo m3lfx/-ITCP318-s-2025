@@ -5,7 +5,7 @@ import Title from './Title'
 import Nav from './Nav'
 import Create from './Create'
 import { Link } from 'react-router-dom';
-
+import { getToken } from './helpers'
 import axios from 'axios';
 
 function App() {
@@ -31,8 +31,13 @@ function App() {
   const deletePost = slug => {
     // console.log('delete', slug, ' post');
     axios
-      .delete(`${import.meta.env.VITE_APP_API}post/${slug}`, 
-       )
+      .delete(`${import.meta.env.VITE_APP_API}post/${slug}`,
+        {
+          headers: {
+            authorization: `Bearer ${getToken()}`
+          }
+        }
+      )
       .then(response => {
         alert(response.data.message);
         fetchPosts();
@@ -63,12 +68,12 @@ function App() {
             <Link to={`/post/update/${post.slug}`} className="btn btn-sm btn-outline-warning">
               Update
             </Link>
-             <button
-                  onClick={() => deleteConfirm(post.slug)}
-                  className="btn btn-sm btn-outline-danger ml-1"
-                >
-                  Delete
-                </button>
+            <button
+              onClick={() => deleteConfirm(post.slug)}
+              className="btn btn-sm btn-outline-danger ml-1"
+            >
+              Delete
+            </button>
 
           </div>
         </div>
