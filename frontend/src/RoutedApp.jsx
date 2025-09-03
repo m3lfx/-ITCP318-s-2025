@@ -6,6 +6,7 @@ import Create from './Create';
 import Nav from './Nav';
 import SinglePost from './SinglePost';
 import Update from './Update';
+import Login from './Login';
 
 const RoutedApp = () => {
     return (
@@ -16,6 +17,8 @@ const RoutedApp = () => {
                 <Route path="/create" exact="true" element={<Create />} />
                 <Route path="/post/:slug" exact="true" element={<SinglePost />} />
                 <Route path="/post/update/:slug" exact="true" element={<Update />} />
+
+                <Route path="/login" exact="true" element={<Login />} />
             </Routes>
         </Router>
     )
